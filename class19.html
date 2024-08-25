@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+}
+.progress-bar {
+width: 400px;
+height: 20px;
+border: 1px solid black;
+margin: 15px;
+padding: 3px;
+}
+.progress-bar .bar{
+width: 20px;
+background-color: cyan;
+height: 100%;
+}
+</style>
+</head>
+<body>
+<div class="progress-bar">
+<div class="bar"></div>
+</div>
+<script> // setInterval(function () {  //}, 2000);
+const bar = document.querySelector('.bar'); 
+const currentWidth = bar.style.width; console.log(currentWidth);
+</script>
+</body>
+</html>

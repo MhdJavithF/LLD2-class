@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: rgb(58, 56, 56);
+            color: white;
+            .stars-wrapper {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .stars {
+                    display: flex;
+                    padding: 10px 0;
+
+                    .star {
+                        font-size: 40px;
+                        padding: 5px;
+                        cursor: pointer;
+
+                        .fa-solid {
+                            color: gold;
+                        }
+                    }
+                }
+
+                .result {
+                    font-weight: bold;
+                    font-size: large;
+                }
+
+                .reset {
+                    padding: 10px;
+
+                    button {
+                        font-weight: bold;
+                        border-radius: 20px;
+                    }
+                }
+            }
+        }
+        
+
+        
+    </style>
+</head>
+<body>
+    <div class="stars-wrapper">
+        <h1>Star Rating</h1>
+        <div class="stars">
+            <div class="star" ><i class="fa-regular fa-star" data-id="1"></i></div>
+            <div class="star" ><i class="fa-regular fa-star" data-id="2"></i></div>
+            <div class="star" ><i class="fa-regular fa-star" data-id="3"></i></div>
+            <div class="star" ><i class="fa-regular fa-star" data-id="4"></i></div>
+            <div class="star" ><i class="fa-regular fa-star" data-id="5"></i></div>
+        </div>
+        <div class="result"> Rating => <span> 0</span></div>
+        <div class="reset"><button>Reset</button></div>
+    </div>
+    <script>
+        const rateRef = document.querySelector('.stars');
+        const resRef = document.querySelector('.result span');
+        const resetRef = document.querySelector('.reset button');
+        let starRate = 0;
+
+        rateRef.addEventListener('click',(e) => {
+            if(e.target.classList.contains('fa-star')){
+                const rate = e.target.dataset.id;
+                starRate = Number(rate);
+                resRef.innerText = rate;
+                updateRatingStars(rate);
+            }
+        });
+
+        rateRef.addEventListener('mouseover',(e) => {
+            if(e.target.classList.contains('fa-star')){
+                const rate = e.target.dataset.id;
+                updateRatingStars(rate);
+            }
+        });
+
+        rateRef.addEventListener('mouseleave',(e) => {
+                updateRatingStars(starRate);
+        });
+
+        function updateRatingStars(rate) {
+            const icons = document.querySelectorAll('.star i.fa-star');
+
+            icons.forEach((icon,indx) => {
+                const currIndx = indx + 1;
+                if(rate >= currIndx){
+                    icon.classList.add('fa-solid');
+                    icon.classList.remove('fa-regular');
+                }
+                else{
+                    icon.classList.remove('fa-solid');
+                    icon.classList.add('fa-regular');
+                }
+            });
+        }
+
+        resetRef.addEventListener('click',(e) => {
+            removeRatings();
+        });
+
+        function removeRatings() {
+            const icons = document.querySelectorAll('.star i.fa-star');
+
+            icons.forEach((icon) => {
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+                resRef.innerText = 0;
+                starRate = 0;
+            });
+        }
+    </script>
+</body>
+</html>
