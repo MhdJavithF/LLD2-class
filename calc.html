@@ -4,15 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h2 {
+            text-align: center;
+        }
+        .calc {
+            background-color: brown;
+            width: 100%;
+            height: 36vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            input {
+                width: 80px;
+                height: 50px;
+                font-size: 30px;
+                text-align: center;
+            }
+
+            font-size: 35px;
+            color: white;
+
+            #ans {
+                font-size: 40px;
+                color: white;
+            }
+        }
+
+        .rating-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            .stars {
+                display: flex;
+                gap: 1rem;
+                font-size: 30px;
+                padding: 1.2rem;
+
+                .fa-solid {
+                    color: gold;
+                }
+            }
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <input id="a" type="number">
-        <input id="op" type="text">
-        <input id="b" type="number">
-          =
-        <span id="ans"></span>
+    <div class="wrapper">
+        <h2>Calculator</h2>
+        <div class="calc">
+            <input id="a" type="number" value="0">
+            <input id="op" type="text" value="+">
+            <input id="b" type="number" value="0">
+            =
+            <span id="ans">Ans</span>
+        </div>
     </div>
-    <script src="calc.js"></script>
+    <div class="rating-wrapper">
+        <h1>Star-rating</h2>
+        <div class="stars">
+            <div class="star" ><i class="fa-regular fa-star" data-id="1"></i></div>
+            <div class="star" ><i class="fa-regular fa-star" data-id="2"></i></div>
+            <div class="star" ><i class="fa-regular fa-star" data-id="3"></i></div>
+            <div class="star" ><i class="fa-regular fa-star" data-id="4"></i></div>
+            <div class="star" ><i class="fa-regular fa-star" data-id="5"></i></div>
+            
+        </div>
+        <h3>Rating = > <span>0</span></h3>
+    </div>
+    <script defer src="calc.js"></script>
+    <script defer src="rating_calc.js"></script>
 </body>
 </html>
