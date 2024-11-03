@@ -31,7 +31,6 @@ starsRef.addEventListener('mouseover', (e) => {
     if(e.target.classList.contains('fa-star')) {
         const val = e.target.dataset.id;
         changeColor(val);
-        console.log('enter');
     }
 });
 
