@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 25px;
+            background-color: gray;
+            color: white;
+            display: flex;
+            flex-direction: column;
+
+            h2 {
+                color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2> various type of polyfills</h3>
+    <h5>ForEach</h5>
+    <h5>Map</h5>
+    <h5>Filter</h5>
+    <h5>Reduce</h5>
+    <h5>Call</h5>
+    <h5>Apply</h5>
+    <h5>Bind</h5>
+    <script>
+        // ForEach
+        var input = [5,10,6,8];
+
+        if(!Array.prototype.MyforEach){
+            Array.prototype.MyforEach = function(callback){
+                for(let i = 0; i < this.length; i++){
+                    callback(this[i],i,this);
+                }
+            }
+        }
+
+        // Map
+
+        if(!Array.prototype.MyMap){
+            Array.prototype.MyMap = function(callback){
+                let result = [];
+                for(let i = 0; i < this.length; i++){
+                    result.push(callback(this[i],i,this));
+                }
+                return result;
+            }
+        }
+
+        // Filter
+
+        if(!Array.prototype.MyFilter){
+            Array.prototype.MyFilter = function(callback){
+                let result = [];
+                for(let i = 0; i < this.length; i++){
+                    if(callback(this[i],i,this)){
+                        result.push(this[i]);
+                    }
+                }
+                return result;
+            }
+        }
+
+        // Reduce
+
+        if(!Array.prototype.MyReduce){
+            Array.prototype.MyReduce = function(callback, initialValue){
+                let acc = initialValue;
+                for(let i = 0; i < this.length; i++){
+                    acc = acc ? callback(acc, this[i], i, this) : this[i];
+                }
+                return acc;
+            }
+        }
+
+        //------------------------------------------------------------------------------------
+        
+        // Call
+        
+        if(!Function.prototype.MyCall){
+            Function.prototype.MyCall = function(context={}, ...args){
+                if(typeof this !== 'function'){
+                    throw new Error("It cannot callable");
+                }
+                context.fn = this;
+                context.fn(...args);
+            }
+        }
+
+        // Apply
+        
+        if(!Function.prototype.MyApply){
+            Function.prototype.MyApply = function(context={}, arg){
+                if(typeof this !== 'function'){
+                    throw new Error("It cannot callable");
+                }
+                if(!Array.isArray(arg)){
+                    throw new Error("plx provide parameter in array foemat");
+                }
+                context.fn = this;
+                context.fn(...arg);
+            }
+        }
+
+        // Bind
+
+        if(!Function.prototype.MyBind){
+            Function.prototype.MyBind = function(context={}, ...args){
+                if(typeof this !== 'function'){
+                    throw new Error("It cannot bound");
+                }
+                context.fn = this;
+                return function(...newArgs) {
+                    return context.fn(...arg, ...newArgs);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
