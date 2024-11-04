@@ -40,7 +40,7 @@
                 input {
                     width: 40px;
                     height: 50px;
-                    border: 2px solid black;
+                    border: 1px solid black;
                     font-size: 25px;
                     text-align: center;
                     margin: 5px;
@@ -60,16 +60,35 @@
         <div class="otp">
             <input maxlength="1">
             <input maxlength="1">
-            <input  maxlength="1">
-            <input  maxlength="1">
+            <input maxlength="1">
+            <input maxlength="1">
         </div>
         <p>Enter your OTP...</p>
     </class>
 
     <script>
-        const valRef = document.querySelector('.otp input:nth-child(1)').focus();
+        const valRef = document.querySelectorAll('.otp input');
         
-        
+        valRef.forEach((val) => {
+            val.addEventListener('keyup', (e) => {
+                if(e.key !='Backspace' && e.key != 'Delete' && e.key >= 0 && e.key <= 9){
+                    e.target.nextElementSibling?.focus();
+                    console.log(e.key);
+                }
+
+            })
+        })
+
+        valRef.forEach((val) => {
+            val.addEventListener('keydown', (e) => {
+                if(e.key =='Backspace' || e.key == 'Delete'){
+                    if(!e.target.value){
+                        e.target.previousElementSibling?.focus();
+                    }
+                    
+                }
+            })
+        })
     </script>
 </body>
 </html>
