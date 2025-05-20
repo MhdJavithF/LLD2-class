@@ -154,6 +154,22 @@
                 }
             },{})
         }
+
+        // flatten 2
+
+        function flat(obj, parent="", res={}){
+            for(let key in obj){
+                const path = parent ? `${parent}.${key}` : key;
+
+                if(typeof obj[key] === 'object' && typeof obj[key] !== null && !Array.isArray(obj[key])){
+                    flat(obj[key], path, res);
+                }
+                else{
+                    res[path] = obj[key];
+                }
+            }
+            return res;
+        }
     </script>
 </body>
 </html>
